@@ -65,6 +65,8 @@ async function chatGpt(event, message) {
         parent_message_id: require('uuid').v4(),
     };
     try {
+        //https://api.pawan.krd/backend-api/conversation 3 request/giây
+        //https://bypass.churchless.tech/api/conversation 5 request/10 giây
         const response = await axios.post("https://bypass.churchless.tech/api/conversation", body, {headers});
         const data = "{" + response.data.split("data: {").pop().split("\n")[0];
         global.oldMessageGPT[event.senderID] = {
