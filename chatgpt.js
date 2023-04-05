@@ -36,7 +36,7 @@ module.exports.run = async ({ event, api, args }) => {
 
 module.exports.handleEvent = async ({ event, api }) => {
     const { body, senderID, threadID, messageID } = event;
-    if (!body || senderID == api.getCurrentUserID() || !body.endsWith(suffixes) || body == suffixes) return;
+    if (!body || senderID == api.getCurrentUserID() || !body.endsWith(suffixes) || body == suffixes || body.indexOf(`${global.config.PREFIX}${this.config.name}`) == 0) return;
     const res = await chatGpt(event, body);
     return api.sendMessage(res, threadID, messageID);
 }
